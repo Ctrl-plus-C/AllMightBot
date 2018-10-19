@@ -1,9 +1,15 @@
 import re
 from translate import translatefn
 from news import fetch
+from tweet import tweett
+import tweepy
+from bored import bore
+from word import words
+from weather import forecast
 from currency import currency_convert
 from quote import quote_generator
 from jokes import random_joke
+from mail import send_mail
 from horoscope import hh
 
 class Command(object):
@@ -11,11 +17,16 @@ class Command(object):
         self.commands = {
             "jump" : self.jump,
             "help" : self.help,
+            "bored" : self.bored,
             "quote":self.quotes,
             "joke":self.joke,
+            "weather" : self.weather,
             "news":self.news,
             "translate" :self.translate,
+            "word" : self.word,
             "currency" : self.currency,        
+            "tweet":self.tweet,
+            "mail" : self.mail, #todo
             "horoscope":self.horoscope
         }
  
@@ -45,6 +56,21 @@ class Command(object):
 
     def news(self, c_list):
         return fetch(c_list)
+
+    def tweet(self, c_list):
+        return tweett(c_list)
+
+    def bored(self, c_list):
+        return bore(c_list)
+    
+    def word(self, c_list):
+        return words(c_list[1])
+
+    def mail(self, c_list):
+        return send_mail(c_list)
+
+    def weather(self, c_list):
+        return forecast(c_list)
 
     def currency(self, c_list):
         return currency_convert(c_list[1],c_list[2],c_list[3])
