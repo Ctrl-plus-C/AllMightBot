@@ -1,6 +1,7 @@
 import requests
+import os
 
-def fetch(c_list):
+def fetch(country):
     countries = {
         'united arab emirates':'ae',
         'uae':'ae',
@@ -67,15 +68,12 @@ def fetch(c_list):
         "south africa":"za",
         "africa":"za"
         }
-    
-    country = ' '.join(c_list[1:])
-
 
     if country.lower() not in countries:
-        return "Country not Supported"
+        return "Country not Supported..."
     url = ('https://newsapi.org/v2/top-headlines?'
         'country='+countries[country.lower()]+'&'
-        'apiKey=api_placeholder')
+        'apiKey='+os.environ.get('news_key'))
     response = requests.get(url).json()
     i=0
 

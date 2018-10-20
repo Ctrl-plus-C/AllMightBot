@@ -1,15 +1,14 @@
 import time
 import event
-import os
 from slackclient import SlackClient
+import os
  
 class Bot(object):
     def __init__(self):
-        print(os.environ.get('slack_key'))
         self.slack_client = SlackClient(os.environ.get('slack_key'))
-        self.bot_name = "botbot"
+        self.bot_name = "allmight"
         self.bot_id = self.get_bot_id()
-         
+        
         if self.bot_id is None:
             exit("Error, could not find " + self.bot_name)
      

@@ -1,9 +1,10 @@
 import requests
 import json
+import os
 
 def words(word_s):
-    app_id = 'key_place_holder'
-    app_key = 'key_place_holder'
+    app_id = os.environ.get('word_id')
+    app_key = os.environ.get('word_key')
 
     language = 'en'
     word_id = word_s

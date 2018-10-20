@@ -1,9 +1,9 @@
-import command
+import test
  
 class Event:
     def __init__(self, bot):
         self.bot = bot
-        self.command = command.Command()
+        self.command = test.Command()
      
     def wait_for_event(self):
         events = self.bot.slack_client.rtm_read()

@@ -11,6 +11,7 @@ from quote import quote_generator
 from jokes import random_joke
 from mail import send_mail
 from horoscope import hh
+from pollution import pollution11
 
 class Command(object):
     def __init__(self):
@@ -24,10 +25,11 @@ class Command(object):
             "news":self.news,
             "translate" :self.translate,
             "word" : self.word,
-            "currency" : self.currency,        
+            "currency" : self.currency,
             "tweet":self.tweet,
             "mail" : self.mail, #todo
-            "horoscope":self.horoscope
+            "horoscope":self.horoscope,
+            "pollution":self.pollution
         }
  
     def handle_command(self, user, command):
@@ -84,3 +86,5 @@ class Command(object):
     def horoscope(self, c_list):
         return hh(c_list[1],c_list[2])
     
+    def pollution(self,c_list):
+        return pollution11(c_list)

@@ -9,4 +9,4 @@ def currency_convert(from_c, to_c, amt):
     response = requests.get(url)
     rate = response.json()["rates"][symbols]
     return("\nConversion Rate: "+str(rate)
-        +"\nConversion: "+str(value*rate))
+        +"\nConverted Amount: "+str(value*rate))
