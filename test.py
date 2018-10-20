@@ -13,12 +13,14 @@ from integration.quote import quote_generator
 from integration.jokes import random_joke
 from integration.mail import send_mail
 from integration.horoscope import hh
+#from  integration.quiz import Question
 from integration.pollution import pollution11
 
 class Command(object):
     def __init__(self):
         self.command_list = {
             "Help" : "Always ready to `help`!",
+            # "Hey" : ""
             "Bored" : "Try asking me for `Something interesting` or let me know `I'm bored` ",
             "Quote": "Ask me to `Share a quote` or let me `Inspire` you",
             "Joke": "I can `Crack a joke` for you and `Say something funny` to lighten your mood!",
@@ -28,7 +30,7 @@ class Command(object):
             "Dictionary":"Ask me the `meaning of life` ",
             "Currency Conversion" : "Convert currencies on the go. Try `Convert 10 USD to INR` or `Currency JPY 5000 - RUB`",        
             "Tweet": "Let me `Tweet a quote`, `Post a joke to Twitter` or simply anything on your mind. Try 'Tweet **AllMight is bestbot**' ;)",
-            "Mail" : "Remind someone you love them. Try `Mail 'i love you dad' with subject 'hi dad!' to 'dad@family.com' from 'me@family.com` Make sure the content comes before the subject and they both are enclosed in inverted commas", 
+            "Mail" : "Remind someone you love them. Try `Mail 'i love you dad' with subject 'hi dad!' to 'dad@family.com' from 'me@family.com'` Make sure the content comes before the subject and they both are enclosed in inverted commas", 
             "Horoscope": "I believe in science. But horoscopes are fun too! Try `Send my <weekly|monthly|today's> Libra horoscope`",
             "Pollution": "Know the pollution in your area. Try `Pollution in Allahabad` "
         }
@@ -69,6 +71,9 @@ class Command(object):
             response += self.quotes()
         elif "bored" in command:
             response += self.bored()
+        # elif "quiz" in command:
+        #     response +="quiz "
+        #     response += self.quiz()
         elif "meaning"in command:
             response += self.word(text)
         elif "pollution" in command:
@@ -128,6 +133,11 @@ class Command(object):
 
     def weather(self, location):
         return forecast(location)
+
+    # def quiz(self):
+    #     q = Question()
+    #     q.gen_questions()
+    #     return q.print_ques()
 
     def currency(self, from_c, to_c, amt):
         return currency_convert(from_c, to_c, amt)
