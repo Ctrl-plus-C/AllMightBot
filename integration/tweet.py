@@ -1,6 +1,6 @@
 import tweepy
-from jokes import random_joke
-from quote import quote_generator
+from integration.jokes import random_joke
+from integration.quote import quote_generator
 import os
 
 
