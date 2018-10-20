@@ -1,20 +1,20 @@
 import tweepy
 from jokes import random_joke
 from quote import quote_generator
+import os
 
 
-def tweett(c_list):
-    consumer_key = "key_place_holder"
-    consumer_secret = "key_place_holder"
-    access_token = "key_place_holder"
-    access_token_secret = "key_place_holder"
+def tweett(key, text):
+    consumer_key = os.environ.get('consumer_key')
+    consumer_secret = os.environ.get('consumer_secret')
+    access_token = os.environ.get('access_token')
+    access_token_secret = os.environ.get('access_token_secret')
     auth = tweepy.OAuthHandler(consumer_key,consumer_secret)
     auth.set_access_token(access_token,access_token_secret)
     # import pdb; pdb.set_trace()
     api = tweepy.API(auth)
     # print(api.status_code)
 
-    key = c_list[1]
     status = 0
 
     if key == 'joke':
@@ -32,17 +32,14 @@ def tweett(c_list):
         api.update_status(status=quote_gen)
         status = 2
     elif key == 'this':
-        stts = ' '.join(c_list[2:])
-        if len(stts)>139:
+        if len(text)>139:
             status = -1
         else:
-            api.update_status(status=stts)
+            api.update_status(status=text)
             status = 3
     
     if status == -1:
         return "Character limit exceeded."
-    elif status == 0:
-        return "Wrong Usage\nFollow: tweet <joke|quote> or tweet <this> 'your tweet here' "
     elif status == 1:
         return "Tweeted joke"
     elif status == 2:
