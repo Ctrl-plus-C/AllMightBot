@@ -1,5 +1,6 @@
 from wit import Wit
 import re
+import os
 from translate import translatefn
 from news import fetch
 from tweet import tweett
@@ -34,7 +35,7 @@ class Command(object):
 
     def handle_command(self, user, text):
         print("AAAAAAAAAA")
-        client = Wit(wit_key)
+        client = Wit(os.environ.get('wit_key'))
         response = "<@" + user + ">: "
         
         resp = client.message(text)
@@ -90,6 +91,7 @@ class Command(object):
             to_curr = resp["entities"]["money_code"][0]["value"]
             response += self.currency(from_curr, to_curr, amt)
         elif "horoscope" in command:
+            print(resp)
             timep = resp["entities"]["time"][0]["value"]
             zodiac = resp["entities"]["Zodiac"][0]["value"]
             response += self.horoscope(timep,zodiac)
